@@ -72,13 +72,8 @@ module SegwayMath (
         .out_val(rght_spd)
     );
 
-    always_comb begin
-        // too_fast = (lft_spd > $signed(12'd1536)) || 
-        //             (rght_spd > $signed(12'd1536));
-        // 12'd1536 = 12'b011000000000
-        too_fast = (!lft_spd[11] && &lft_spd[10:9] && |lft_spd[8:0]) || 
-                   (!rght_spd[11] && &rght_spd[10:9] && |rght_spd[8:0]);
-        // no backwards speed cap W
-    end
+    localparam logic signed [12:0] TOO_FAST_THRESH = 13'sd1536;
+
+    assign too_fast = (lft_shaped > TOO_FAST_THRESH) || (rght_shaped > TOO_FAST_THRESH);
 
 endmodule
