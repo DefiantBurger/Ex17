@@ -30,9 +30,9 @@ compile
 ungroup -all -flatten
 compile
 
-report_timing -delay_type min > balance_cntrl_min_delay.txt
-report_timing -delay_type max > balance_cntrl_max_delay.txt
+report_timing -delay_type min > timing_min.rpt
+report_timing -delay_type max > timing_max.rpt
 
-report_area > balance_cntrl_area.txt
+report_area > area.rpt
 
 write -format verilog balance_cntrl -output balance_cntrl.vg
