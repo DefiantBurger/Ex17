@@ -44,7 +44,6 @@ module SegwayMath (
     logic signed [12:0] lft_torque_comp;
     logic signed [12:0] lft_shaped_pre_pwr_up;
     logic signed [12:0] lft_shaped;
-    logic [11:0] abs_lft_torque;
 
     always_comb begin
         lft_torque_comp = lft_torque[12] ? lft_torque - MIN_DUTY : lft_torque + MIN_DUTY;
@@ -56,7 +55,6 @@ module SegwayMath (
     logic signed [12:0] rght_torque_comp;
     logic signed [12:0] rght_torque_shaped;
     logic signed [12:0] rght_shaped;
-    logic [11:0] abs_rght_torque;
 
     always_comb begin
         rght_torque_comp = rght_torque[12] ? rght_torque - MIN_DUTY : rght_torque + MIN_DUTY;
