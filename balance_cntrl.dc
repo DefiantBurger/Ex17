@@ -1,5 +1,6 @@
 analyze -format sverilog {saturate.sv PID.sv SegwayMath.sv balance_cntrl.sv}
 elaborate balance_cntrl -parameters "FAST_SIM=0"
+rename_design balance_cntrl_FAST_SIM0 balance_cntrl
 
 current_design balance_cntrl
 link
