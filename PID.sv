@@ -45,8 +45,7 @@ module PID #(
 
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) I_term <= 18'h00000;
-    else if (clk) I_term <= next_accum;
-    else I_term <= I_term;
+    else I_term <= next_accum;
   end
 
 
@@ -106,8 +105,7 @@ module PID #(
 
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) long_tmr <= 0;
-    else if (clk) long_tmr <= nxt_tmr;
-    else long_tmr <= long_tmr;
+    else long_tmr <= nxt_tmr;
   end
 
   assign ss_tmr = long_tmr[26:19];

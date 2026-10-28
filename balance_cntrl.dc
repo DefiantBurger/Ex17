@@ -1,7 +1,5 @@
-read_file -format sverilog {saturate.sv}
-read_file -format sverilog {PID.sv}
-read_file -format sverilog {SegwayMath.sv}
-read_file -format sverilog {balance_cntrl.sv}
+analyze -format sverilog {saturate.sv PID.sv SegwayMath.sv balance_cntrl.sv}
+elaborate balance_cntrl -parameters "FAST_SIM=1"
 
 current_design balance_cntrl
 link
