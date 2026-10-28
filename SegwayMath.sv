@@ -45,11 +45,11 @@ module SegwayMath (
     logic signed [12:0] lft_shaped_pre_pwr_up;
     logic signed [12:0] lft_shaped;
     logic [11:0] abs_lft_torque;
-    
+
     always_comb begin
         lft_torque_comp = lft_torque[12] ? lft_torque - MIN_DUTY : lft_torque + MIN_DUTY;
-        abs_lft_torque = lft_torque[12] ? {-lft_torque}[11:0] : lft_torque[11:0];
-        lft_shaped_pre_pwr_up = abs_lft_torque > LOW_TORQUE_BAND ? lft_torque_comp : lft_torque * GAIN_MULT;
+        lft_shaped_pre_pwr_up = (lft_torque > LOW_TORQUE_BAND || lft_torque < -LOW_TORQUE_BAND) ?
+                                lft_torque_comp : lft_torque * GAIN_MULT;
         lft_shaped = pwr_up ? lft_shaped_pre_pwr_up : 13'h0000;
     end
 
@@ -57,11 +57,11 @@ module SegwayMath (
     logic signed [12:0] rght_torque_shaped;
     logic signed [12:0] rght_shaped;
     logic [11:0] abs_rght_torque;
-    
+
     always_comb begin
         rght_torque_comp = rght_torque[12] ? rght_torque - MIN_DUTY : rght_torque + MIN_DUTY;
-        abs_rght_torque = rght_torque[12] ? {-rght_torque}[11:0] : rght_torque[11:0];
-        rght_torque_shaped = abs_rght_torque > LOW_TORQUE_BAND ? rght_torque_comp : rght_torque * GAIN_MULT;
+        rght_torque_shaped = (rght_torque > LOW_TORQUE_BAND || rght_torque < -LOW_TORQUE_BAND) ?
+                             rght_torque_comp : rght_torque * GAIN_MULT;
         rght_shaped = pwr_up ? rght_torque_shaped : 13'h0000;
     end
 
