@@ -26,7 +26,7 @@ set_wire_load_model -name 16000 -library saed32rvt_tt0p85v25c
 
 compile
 ungroup -all -flatten
-compile
+compile -map_effort high
 
 report_timing -delay_type min > timing_min.rpt
 report_timing -delay_type max > timing_max.rpt
